@@ -40,19 +40,20 @@ def start_handler():
 def stop_handler():
     global timeIsRunning, color
 
-    timeIsRunning = False
+    if timeIsRunning:
+        timeIsRunning = False
 
-    pts = int(points.get())
-    trs = int(tries.get())
+        pts = int(points.get())
+        trs = int(tries.get())
 
-    if (times % 10 == 0):
-        pts += 1
-        trs += 1
-        points.set("{0:1d}".format(pts))
-        tries.set("{0:1d}".format(trs))
-    else:
-        trs += 1
-        tries.set("{0:1d}".format(trs))
+        if (times % 10 == 0):
+            pts += 1
+            trs += 1
+            points.set("{0:1d}".format(pts))
+            tries.set("{0:1d}".format(trs))
+        else:
+            trs += 1
+            tries.set("{0:1d}".format(trs))
 
 
 def reset_handler():
